@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Items</h1>
+<form method="post" action="/items" class="card">
+  <label>Name <input name="name" required maxlength="500"></label>
+  <label>Note <input name="note" maxlength="500"></label>
+  <button type="submit">Add</button>
+</form>
+<ul class="list">
+  {% for item in items %}
+  <li>
+    <strong>{{ item.name }}</strong> {{ item.note }}
+    <form method="post" action="/items/{{ item.id }}/delete" class="inline"><button>Delete</button></form>
+  </li>
+  {% else %}
+  <li class="muted">No items yet.</li>
+  {% endfor %}
+</ul>
+{% endblock %}
